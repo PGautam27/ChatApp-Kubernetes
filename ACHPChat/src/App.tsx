@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { io } from 'socket.io-client';
 
-const socket = io('http://achpserver-service:4000');
+const socket = io('http://chat-backend.default.svc.cluster.local:4000');
 // const socket = io('localhost:4000')
 
 function App() {
