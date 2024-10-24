@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: achpserver-deployment
+  labels:
+    app: myapp                     # General app label
+    component: achpserver              # Component label indicating this is the backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+      component: achpserver           # Must match the Pod labels
+  template:
+    metadata:
+      labels:
+        app: myapp                 # Same app label for the Pods
+        component: achpserver          # Same component label for the Pods
+    spec:
+      containers:
+      - name: achpserver
+        image: pgautam27/achpserver:v1.0
+        ports:
+        - containerPort: 4000       # Specify the backend port

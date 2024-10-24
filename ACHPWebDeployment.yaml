@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: achpweb-deployment
+  labels:
+    app: myapp                     # General app label
+    component: achpweb             # Component label indicating this is the frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+      component: achpweb          # Must match the Pod labels
+  template:
+    metadata:
+      labels:
+        app: myapp                 # Same app label for the Pods
+        component: achpweb         # Same component label for the Pods
+    spec:
+      containers:
+      - name: achpweb
+        image: pgautam27/achpweb:v1.0
+        ports:
+        - containerPort: 80
