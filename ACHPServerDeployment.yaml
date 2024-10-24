@@ -6,7 +6,7 @@ metadata:
     app: myapp                     # General app label
     component: achpserver              # Component label indicating this is the backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: myapp
