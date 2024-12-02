@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Server } = require('socket.io');
@@ -18,39 +17,7 @@ const io = new Server(app, {
   }
 });
 
-const PORT = process.env.PORT || 4000;
-
-// MongoDB connection
-mongoose.connect('mongodb+srv://gautam:appu@cluster0.dbs5z.mongodb.net/', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-// Chat Schema
-const chatSchema = new mongoose.Schema({
-  chat: String,
-});
-
-const Chats = mongoose.model('Chat', chatSchema);
-
-// CRUD routes
-
-// Create a chat
-server.post('/chat', async (req, res) => {
-  const { chat } = req.body;
-  console.log("This is the chat => ", chat);
-  const newChat = new Chats({ chat });
-  await newChat.save();
-  res.status(201).send(newChat);
-});
-
-// Get all chats
-server.get('/chat', async (req, res) => {
-  const chats = await Chats.find();
-  res.send(chats);
-});
+const PORT = process.env.PORT || 7000;
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -69,6 +36,9 @@ io.on('connection', (socket) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// Bind to all interfaces
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on 0.0.0.0:${PORT}`);
 });
+
+

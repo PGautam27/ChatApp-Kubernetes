@@ -1,0 +1,19 @@
+services:
+  webapp:
+    image: webapp:latest
+    container_name: webapp
+    networks:
+      - chatnetwork
+    ports:
+      - "3000:6000" # Map port 6000 in the container to 3000 on the host
+  webserver:
+    image: webserver:latest
+    container_name: webserver
+    networks:
+      - chatnetwork
+    ports:
+      - "7000:7000" # Map port 7000 in the container to 7000 on the host
+
+networks:
+  chatnetwork:
+    driver: bridge
