@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 
 // const socket = io('http://chat-backend.default.svc.cluster.local:4000');
-// const socket = io('http://34.46.165.31:30002')
-const socket = io('http://localhost:7000');
+const socket = io('http://34.42.147.22:80')
+// const socket = io('http://localhost:7000');
 
 type ChatMessage = {
   username: string;
