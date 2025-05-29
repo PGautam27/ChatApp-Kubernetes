@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: achpweb
+  name: anymweb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: achpweb
+      app: anymweb
   template:
     metadata:
       labels:
-        app: achpweb
+        app: anymweb
     spec:
       containers:
-      - name: achpweb
-        image: pgautam27/achpweb:v1.4
+      - name: anymweb
+        image: pgautam27/anym-web:1.0
         ports:
         - containerPort: 6000

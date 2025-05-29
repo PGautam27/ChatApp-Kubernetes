@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: achpserver
+  name: anymserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: achpserver
+      app: anymserver
   template:
     metadata:
       labels:
-        app: achpserver
+        app: anymserver
     spec:
       containers:
-      - name: achpserver
-        image: pgautam27/achpserver:v1.1
+      - name: anymserver
+        image: pgautam27/anym-server:1.0
         ports:
         - containerPort: 7000
