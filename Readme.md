@@ -33,21 +33,21 @@ If you want to run it locally then you can do the following. Ya you must have Do
     kubectl apply -f AnymServerLoadbalancer.yaml ## incase it's loadbalancer
     ```
 3. **Now get external Ip and update it in app.tsx**
-For Loadbalancer
+    For Loadbalancer
     ```bash
     kubectl get svc ## you will get the external IP if you have use loadbalancer
     ```
-For NodePort
+    For NodePort
     ```bash
     kubectl get pods -o wide ## you will get in which node the pod is running
     kubectl get nodes -o wide ## you will get the node detail and get the external ip
     ```
-update the external IP and port ( 80 if loadbalancer / 30002 if nodeport) with it in app.tsx file in AnonymousChats app.
+    update the external IP and port ( 80 if loadbalancer / 30002 if nodeport) with it in app.tsx file in AnonymousChats app.
     ```bash
     const socket = io('http://<external-ip>:<port>')
     ```
-4. **Now create a Docker Image and push it in your dockerhub**
-Create image and push it in dockerhub
+4. **Now create a Docker Image and push it in your dockerhub**  
+    Create image and push it in dockerhub
     ```bash
     cd Chatapp-kubernetes/AnonymousChats
     docker build -t <YourdockerProfile>/anym-web:latest -f DockerFile .
@@ -65,7 +65,7 @@ Create image and push it in dockerhub
     ```
 
 7. **Follow similar to 3rd step**
-If nodeport use node external ip and port 30003 and if loadbalancer then use the external ip of loadbalancer service and port 80. And run it in the browser. That's it you are good to go
+    If nodeport use node external ip and port 30003 and if loadbalancer then use the external ip of loadbalancer service and port 80. And run it in the browser. That's it you are good to go
 
 ## Contributing
 
