@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 
 // const socket = io('http://chat-backend.default.svc.cluster.local:4000');
-const socket = io('http://34.42.147.22:80')
-// const socket = io('http://localhost:7000');
+// const socket = io('http://34.42.147.22:80')
+const socket = io('http://localhost:7000');
 
 type ChatMessage = {
   username: string;
@@ -14,6 +14,8 @@ function App() {
   const [text, setText] = useState("");
   const [chats, setChats] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [myUsername, setMyUsername] = useState<string | null>(null);
+
   const chatEndRef = useRef<HTMLDivElement>(null);
   let typingTimeout: NodeJS.Timeout | null = null;
 
@@ -48,6 +50,10 @@ function App() {
   useEffect(() => {
     socket.on('welcome', (data) => {
       console.log('Socket says:', data);
+      const nameMatch = data.match(/Welcome (.+)!/);
+      if (nameMatch && nameMatch[1]) {
+        setMyUsername(nameMatch[1]);
+      }
     });
 
     socket.on('message', (msg: ChatMessage) => {
@@ -76,6 +82,11 @@ function App() {
       {/* Header */}
       <div className="py-4 px-6 bg-gradient-to-r from-blue-900 to-blue-700 text-cyan-300 text-center text-2xl font-bold shadow-xl uppercase tracking-widest border-b border-cyan-700">
         🧠 Anonymous Chat System
+        {myUsername && (
+          <div className="text-sm text-cyan-200 mt-1 lowercase">
+            You are: <span className="font-mono text-cyan-100">{myUsername}</span>
+          </div>
+        )}
       </div>
 
       {/* Chat Messages */}
