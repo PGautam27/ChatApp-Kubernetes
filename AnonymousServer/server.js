@@ -26,9 +26,23 @@ io.on('connection', (socket) => {
   socket.emit('welcome', `Welcome ${randomName}!`);
   console.log(`User connected: ${randomName}`);
 
+  // Handle chat messages
   socket.on('message', (msg) => {
     const username = userMap.get(socket.id) || 'unknown';
-    io.emit('message', { username, message: msg }); // broadcast
+    io.emit('message', { username, message: msg }); // broadcast message to all
+  });
+
+  // Handle typing indicator
+  socket.on('typing', () => {
+    const username = userMap.get(socket.id) || 'unknown';
+    // Broadcast to everyone except the sender that this user is typing
+    socket.broadcast.emit('typing', { username });
+  });
+
+  socket.on('stopTyping', () => {
+    const username = userMap.get(socket.id) || 'unknown';
+    // Broadcast to everyone except the sender that this user stopped typing
+    socket.broadcast.emit('stopTyping', { username });
   });
 
   socket.on('disconnect', () => {
