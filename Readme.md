@@ -33,6 +33,7 @@ If you want to run it locally then you can do the following. Ya you must have Do
     kubectl apply -f AnymServerLoadbalancer.yaml ## incase it's loadbalancer
     ```
 3. **Now get external Ip and update it in app.tsx**
+
     For Loadbalancer
     ```bash
     kubectl get svc ## you will get the external IP if you have use loadbalancer
