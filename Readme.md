@@ -66,6 +66,7 @@ If you want to run it locally then you can do the following. Ya you must have Do
     ```
 
 7. **Follow similar to 3rd step**
+    
     If nodeport use node external ip and port 30003 and if loadbalancer then use the external ip of loadbalancer service and port 80. And run it in the browser. That's it you are good to go
 
 ## Contributing
