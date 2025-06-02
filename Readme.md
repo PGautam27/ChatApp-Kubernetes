@@ -2,6 +2,9 @@
 
 It's a simple chat app that uses socket.io in backend and lets ppl anonymously chat with others.
 
+# Demo 
+[!AnymChat](https://github.com/user-attachments/assets/3c9e2c92-396a-4624-84f4-5e5dd2f282ba)
+
 ## Getting Started
 If you want to run it locally then you can do the following. Ya you must have Docker before doing so.
 
